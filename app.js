@@ -20,7 +20,7 @@ app.use("/student",student)
 app.use("/teacher",teacher)
 app.use("/headteacher",headteacher)
 
-port = process.env.PORT;
+port = process.env.PORT || 3000;
 
 app.listen(port,()=>{
     console.log("server listening")
