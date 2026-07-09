@@ -4,12 +4,15 @@ const router=require("express").Router();
 //middleware
 function checkifadmin(req,res,next){
     if(req.query.admin!=="true"){
-        return res.status(401).json({message: "you are not an admin"})
+        const err=new Error(`you are not an admin`);
+        err.statusCode = 401;
+        err.status="error";        
+        return next(err)
     }
-    else{
-        console.log("welcome admin")
-        next();
-    }
+    
+    console.log("you are an admin")
+    next();
+    
 }
 
 //routes
