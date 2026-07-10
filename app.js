@@ -2,6 +2,7 @@
 require("dotenv").config();
 const express=require("express");
 const app=express();
+const jwt = require('jsonwebtoken');
 
 //routes imported
 const student=require("./routes/student");
@@ -20,6 +21,16 @@ app.use(logger)
 app.use("/student",student)
 app.use("/teacher",teacher)
 app.use("/headteacher",headteacher)
+
+app.post("/gtoken",(req,res)=>{
+    let jwtsecretey=process.env.jWT_SECRET_KEY
+    let data={
+        userid: 1,
+        time: Date()
+    }
+    const token=jwt.sign(data,jwtsecretey)
+    res.send(token)
+})
 
 //catch all undefined routes
 app.use((req,res,next)=>{

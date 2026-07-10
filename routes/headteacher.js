@@ -8,11 +8,9 @@ function checkifadmin(req,res,next){
         err.statusCode = 401;
         err.status="error";        
         return next(err)
-    }
-    
+    }    
     console.log("you are an admin")
-    next();
-    
+    next();    
 }
 
 //routes
